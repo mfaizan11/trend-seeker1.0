@@ -13,11 +13,11 @@ import type { LucideIcon } from 'lucide-react';
 // Configure Poppins font
 const poppins = Poppins({
   subsets: ['latin'],
-  weight: ['400', '700'], // Include desired weights
-  variable: '--font-poppins', // Define a CSS variable for the font
+  weight: ['400', '700'], 
+  variable: '--font-poppins', 
 });
 
-const SITE_URL = 'https://trend-seeker.netlify.app/'; // UPDATED DOMAIN
+const SITE_URL = 'https://trend-seeker.netlify.app/'; 
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
