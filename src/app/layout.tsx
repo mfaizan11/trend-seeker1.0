@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Trend Seeker | AI-Powered Marketing & Finance Tools',
     description: 'Unlock growth with Trend Seeker: AI Marketing Tool, Profitability Calculator, and Ad Budget Analyzer.',
-    url: '/', // This will be resolved to SITE_URL
+    url: '/', 
     siteName: 'Trend Seeker',
     images: [
       {
@@ -48,9 +48,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Trend Seeker | AI-Powered Marketing & Finance Tools',
     description: 'Unlock growth with Trend Seeker: AI Marketing Tool, Profitability Calculator, and Ad Budget Analyzer.',
-    images: ['/og-default.png'], // Relative path, resolved by metadataBase
-    // site: '@yourtwitterhandle', // Optional: Add your Twitter handle
-    // creator: '@yourtwitterhandle', // Optional: Add creator's Twitter handle
+    images: ['/og-default.png'], 
   },
   robots: {
     index: true,
@@ -64,11 +62,11 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: '/favicon.ico', // Ensure you have favicon.ico in /public
-    // apple: '/apple-touch-icon.png', // Optional
+    icon: '/favicon.png',
+   
   },
-  manifest: '/site.webmanifest', // Ensure you have site.webmanifest in /public
-  // themeColor: '#FF0000', // Example theme color matching your primary red
+  manifest: '/site.webmanifest', 
+  
 };
 
 
