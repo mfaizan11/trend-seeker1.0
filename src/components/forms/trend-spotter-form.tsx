@@ -12,7 +12,7 @@ import { useToast } from "@/hooks/use-toast";
 
 const IDENTIFIED_TRENDS_COUNT_KEY = 'identifiedTrendsCount';
 
-export function TrendSpotterForm() {
+export function TrendSpotterForm() { // Retain the named export
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<IdentifyEmergingTrendsOutput | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -158,3 +158,5 @@ export function TrendSpotterForm() {
     </div>
   );
 }
+
+export default TrendSpotterForm; 
