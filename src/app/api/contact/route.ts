@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
 
     const resend = new Resend(process.env.RESEND_API_KEY);
     const recipientEmail = "muhammadfaizanakx@gmail.com"; 
-    const fromAddress = 'Trend Seeker Contact <muhammadfaizanakx@gmail.com>'; 
+    const fromAddress = 'Trend Seeker Contact <onboarding@resend.dev>'; 
 
     try {
       const { data, error } = await resend.emails.send({
