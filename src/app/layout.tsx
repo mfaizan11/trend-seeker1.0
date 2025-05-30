@@ -84,6 +84,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${poppins.variable} dark`}>
+       <head>
+      
+        <meta name="google-site-verification" content="ognblvgbLqQTT-hCUXDEEJRosOrDzv5OSovuL-drNZQ" />
+      </head>
       <body className="font-sans antialiased overflow-x-hidden">
         <div className="blob" aria-hidden="true"></div>
         

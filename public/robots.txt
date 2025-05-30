@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-
 Sitemap: https://trend-seeker.netlify.app/sitemap.xml

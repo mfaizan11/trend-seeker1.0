@@ -2,19 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://trend-seeker.netlify.app/</loc>
-    <lastmod>2024-06-01</lastmod> <!-- Replace with actual last modified date or generate dynamically -->
+    <lastmod>2024-06-01</lastmod> 
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://trend-seeker.netlify.app/profitability-calculator</loc>
-    <lastmod>2024-06-01</lastmod> <!-- Replace with actual last modified date or generate dynamically -->
+    <lastmod>2024-06-01</lastmod> 
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://trend-seeker.netlify.app/ad-budget-calculator</loc>
-    <lastmod>2024-06-01</lastmod> <!-- Replace with actual last modified date or generate dynamically -->
+    <lastmod>2024-06-01</lastmod> 
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
