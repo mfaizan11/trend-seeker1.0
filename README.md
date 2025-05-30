@@ -1,0 +1,1 @@
+# trend-seeker1.0
