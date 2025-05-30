@@ -1,0 +1,139 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 7%; /* Deep dark gray / "blurry black" */
+    --foreground: 0 0% 98%; /* Light gray for text */
+
+    --card: 0 0% 12%; /* Slightly lighter dark gray for cards */
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 72% 51%; /* Vibrant Red */
+    --primary-foreground: 0 0% 98%; /* White text on Red */
+
+    --secondary: 0 0% 14.9%; /* Darker gray for secondary elements */
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%; /* Lighter gray for muted text */
+
+    --accent: 207 82% 66%; /* Calming Blue #63B3ED */
+    --accent-foreground: 0 0% 7%; /* Dark text on blue accent */
+
+    --destructive: 0 72% 51%; /* Use primary red for destructive as well */
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 20%; /* Slightly lighter border */
+    --input: 0 0% 20%;
+    --ring: 0 72% 51%; /* Red for focus rings */
+
+    --radius: 0.5rem;
+
+    --chart-1: 0 72% 51%; /* Primary Red */
+    --chart-2: 207 82% 66%; /* Accent Blue */
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    height: 100%; /* Ensure html takes full height */
+  }
+  body {
+    color: hsl(var(--foreground));
+    @apply text-foreground; 
+    overflow-x: hidden; 
+    height: 100%; 
+    margin: 0;
+    padding: 0;
+    position: relative; 
+  }
+
+  .site-content-wrapper {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: hsl(var(--background)); 
+    position: relative; 
+    z-index: 1; 
+  }
+}
+
+.blob {
+  position: fixed;
+  z-index: 0; 
+  top: 0; 
+  left: 0; 
+  width: 55vw; 
+  height: 55vw;
+  min-width: 380px; 
+  min-height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(circle, hsla(var(--primary), 0.65) 0%, hsla(var(--primary), 0.15) 70%); 
+  opacity: 0.9; 
+  filter: blur(65px); 
+  animation: blob-animation 18s infinite alternate ease-in-out; 
+  will-change: transform; 
+}
+
+@keyframes blob-animation {
+  0% {
+    transform: translate(0vw, 0vh) scale(1) rotate(0deg);
+  }
+  25% {
+    transform: translate(40vw, 35vh) scale(1.25) rotate(50deg);
+  }
+  50% {
+    transform: translate(10vw, 60vh) scale(0.75) rotate(110deg);
+  }
+  75% {
+    transform: translate(-15vw, 30vh) scale(1.15) rotate(170deg);
+  }
+  100% {
+    transform: translate(0vw, 0vh) scale(1) rotate(230deg);
+  }
+}
+
+
+@layer utilities {
+  .animate-marquee {
+    display: flex;
+    animation: marquee 20s linear infinite;
+  }
+  .animate-marquee-content > * {
+    margin-right: 2rem;
+  }
+
+  .animate-fadeInUp {
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0; /* Initial state for animation */
+  }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,13 @@
+# Netlify configuration file
+# https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+  # Command to build your Next.js site
+  command = "npm run build"
+  # Directory to publish (Next.js output directory)
+  publish = ".next"
+
+# This plugin ensures Next.js features (like API routes, image optimization, etc.) work correctly on Netlify.
+# Netlify often installs this automatically for Next.js sites, but explicitly adding it is good practice.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
