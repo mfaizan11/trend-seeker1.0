@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from "next/link";
@@ -41,9 +40,7 @@ import { useRegion } from "@/contexts/region-context";
 import { cn } from "@/lib/utils";
 import { useState, type FormEvent, createElement } from "react";
 import { useToast } from "@/hooks/use-toast";
-// import { useAuth } from "@/contexts/auth-context"; // useAuth removed
 
-// Define a mapping from icon names (strings) to actual Lucide icon components
 const iconMap: { [key: string]: LucideIcon } = {
   Lightbulb: Lightbulb,
   Calculator: Calculator,
@@ -64,10 +61,9 @@ export function MainHeader({ navItems }: MainHeaderProps) {
   const pathname = usePathname();
   const { selectedRegion, setSelectedRegion, availableRegions } = useRegion();
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
-  const [contactFormState, setContactFormState] = useState({ name: '', email: '', message: ''});
+  const [contactFormState, setContactFormState] = useState({ name: '', email: '', message: '' });
   const [isSubmittingContact, setIsSubmittingContact] = useState(false);
   const { toast } = useToast();
-  // const { user, signOut, isFirebaseConfigured } = useAuth(); // useAuth logic removed
 
   const handleContactFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setContactFormState({ ...contactFormState, [e.target.name]: e.target.value });
@@ -76,19 +72,42 @@ export function MainHeader({ navItems }: MainHeaderProps) {
   const handleContactSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsSubmittingContact(true);
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    console.log("Contact form submitted:", contactFormState);
-    toast({ title: "Message Sent!", description: "We'll get back to you soon." });
-    setContactFormState({ name: '', email: '', message: '' });
-    setIsContactModalOpen(false); // Close modal on submit
-    setIsSubmittingContact(false);
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(contactFormState),
+      });
+
+      if (response.ok) {
+        toast({ title: "Message Sent!", description: "We'll get back to you soon." });
+        setContactFormState({ name: '', email: '', message: '' });
+        setIsContactModalOpen(false);
+      } else {
+        const errorData = await response.json();
+        toast({
+          variant: "destructive",
+          title: "Error Sending Message",
+          description: errorData.message || "Could not send your message. Please try again.",
+        });
+      }
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Network Error",
+        description: "Could not send your message. Please check your connection.",
+      });
+    } finally {
+      setIsSubmittingContact(false);
+    }
   };
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-16 max-w-screen-2xl items-center justify-between px-4 sm:px-8">
-        {/* Left Section: Mobile Menu Trigger & Logo */}
         <div className="flex items-center gap-2 md:gap-4">
           <Sheet>
             <SheetTrigger asChild>
@@ -109,7 +128,7 @@ export function MainHeader({ navItems }: MainHeaderProps) {
                         asChild
                         className={cn(
                           "justify-start text-base py-3 flex items-center w-full",
-                           isActive ? "" : "hover:bg-neutral-800 hover:text-primary"
+                          isActive ? "" : "hover:bg-neutral-800 hover:text-primary"
                         )}
                         size="lg"
                       >
@@ -130,36 +149,32 @@ export function MainHeader({ navItems }: MainHeaderProps) {
           </Link>
         </div>
 
-        {/* Center Section: Desktop Navigation */}
-        <div className="hidden md:flex justify-center items-center">
-          <nav className="flex gap-2 items-center">
-            {navItems.map((item) => {
-              const IconComponent = iconMap[item.iconName];
-              const isActive = pathname === item.href;
-              return (
-                <Button
-                  key={item.label}
-                  variant="ghost"
-                  size="sm"
-                  asChild
-                  className={cn(
-                    "text-sm font-medium rounded-full px-4 py-2",
-                    isActive
-                      ? "bg-primary text-primary-foreground hover:bg-primary/90"
-                      : "text-muted-foreground hover:bg-neutral-800 hover:text-primary"
-                  )}
-                >
-                  <Link href={item.href} className="flex items-center">
-                    {IconComponent && <IconComponent className="mr-2 h-4 w-4" />}
-                    {item.label}
-                  </Link>
-                </Button>
-              );
-            })}
-          </nav>
-        </div>
+        <nav className="hidden md:flex gap-2 items-center">
+          {navItems.map((item) => {
+            const IconComponent = iconMap[item.iconName];
+            const isActive = pathname === item.href;
+            return (
+              <Button
+                key={item.label}
+                variant="ghost"
+                size="sm"
+                asChild
+                className={cn(
+                  "text-sm font-medium rounded-full px-4 py-2 flex items-center",
+                  isActive
+                    ? "bg-primary text-primary-foreground hover:bg-primary/90"
+                    : "text-muted-foreground hover:bg-neutral-800 hover:text-primary"
+                )}
+              >
+                <Link href={item.href} className="flex items-center">
+                  {IconComponent && <IconComponent className="mr-2 h-4 w-4" />}
+                  {item.label}
+                </Link>
+              </Button>
+            );
+          })}
+        </nav>
 
-        {/* Right Section: Actions */}
         <div className="flex items-center space-x-2 sm:space-x-3">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -168,7 +183,7 @@ export function MainHeader({ navItems }: MainHeaderProps) {
                 <span className="sr-only">Change region</span>
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="bg-background">
+            <DropdownMenuContent align="end" className="bg-card">
               <DropdownMenuLabel>Region / Currency</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuRadioGroup
@@ -194,7 +209,7 @@ export function MainHeader({ navItems }: MainHeaderProps) {
                 Contact
               </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px] bg-card border-border">
+            <DialogContent className="w-[90vw] max-w-sm sm:max-w-[425px] bg-card border-border p-4 sm:p-6">
               <DialogHeader>
                 <DialogTitle>Contact Us</DialogTitle>
                 <DialogDescription>
@@ -204,18 +219,18 @@ export function MainHeader({ navItems }: MainHeaderProps) {
               <form onSubmit={handleContactSubmit} className="grid gap-4 py-4">
                 <div className="space-y-1">
                   <Label htmlFor="contact-name">Name</Label>
-                  <Input id="contact-name" name="name" value={contactFormState.name} onChange={handleContactFormChange} required />
+                  <Input id="contact-name" name="name" value={contactFormState.name} onChange={handleContactFormChange} required disabled={isSubmittingContact} />
                 </div>
                 <div className="space-y-1">
                   <Label htmlFor="contact-email">Email</Label>
-                  <Input id="contact-email" name="email" type="email" value={contactFormState.email} onChange={handleContactFormChange} required />
+                  <Input id="contact-email" name="email" type="email" value={contactFormState.email} onChange={handleContactFormChange} required disabled={isSubmittingContact} />
                 </div>
                 <div className="space-y-1">
                   <Label htmlFor="contact-message">Message</Label>
-                  <Textarea id="contact-message" name="message" value={contactFormState.message} onChange={handleContactFormChange} required rows={4} />
+                  <Textarea id="contact-message" name="message" value={contactFormState.message} onChange={handleContactFormChange} required rows={4} disabled={isSubmittingContact} />
                 </div>
                 <DialogFooter className="mt-2">
-                   <Button type="button" variant="ghost" onClick={() => setIsContactModalOpen(false)} className="hover:bg-neutral-800 hover:text-primary">Cancel</Button>
+                  <Button type="button" variant="ghost" onClick={() => setIsContactModalOpen(false)} className="hover:bg-neutral-800 hover:text-primary" disabled={isSubmittingContact}>Cancel</Button>
                   <Button type="submit" disabled={isSubmittingContact}>
                     {isSubmittingContact && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                     {isSubmittingContact ? "Sending..." : "Send Message"}
