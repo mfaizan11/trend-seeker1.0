@@ -267,7 +267,7 @@ export function AiMarketingToolForm() {
                 <TabsTrigger value="generalIdeas"><ListChecks className="mr-2 h-4 w-4"/>General Ideas</TabsTrigger>
               </TabsList>
 
-              <TabsContent value="adImage" className="p-4 border rounded-md bg-muted/20 min-h-[300px] space-y-4">
+              <TabsContent value="adImage" className="p-4 mt-[5rem] border rounded-md bg-muted/20 min-h-[300px] space-y-4">
                 <h3 className="text-xl font-semibold text-foreground mb-2">Generated Ad Image &amp; Prompt</h3>
                 {result.generatedAdImageDataUri ? (
                   <div className="flex flex-col items-center space-y-4">
