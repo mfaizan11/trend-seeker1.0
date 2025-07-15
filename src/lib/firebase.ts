@@ -5,8 +5,8 @@ import type { Firestore } from 'firebase/firestore';
 import type { Analytics } from "firebase/analytics";
 
 // Firebase configuration will be loaded from environment variables
-// Ensure these are set in your .env.local for local development
-// and in your hosting provider's environment variable settings for production.
+// Ensure these are set in .env.local for local development
+// and in hosting provider's environment variable settings for production.
 // const firebaseConfig = {
 //   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
 //   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
