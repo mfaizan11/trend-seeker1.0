@@ -267,7 +267,7 @@ export function AiMarketingToolForm() {
                 <TabsTrigger value="generalIdeas"><ListChecks className="mr-2 h-4 w-4"/>General Ideas</TabsTrigger>
               </TabsList>
 
-              <TabsContent value="adImage" className="p-4 mt-[7rem] border rounded-md bg-muted/20 min-h-[300px] space-y-4">
+              <TabsContent value="adImage" className="p-4 mt-[5rem] border rounded-md bg-muted/20 min-h-[300px] space-y-4">
                 <h3 className="text-xl font-semibold text-foreground mb-2">Generated Ad Image &amp; Prompt</h3>
                 {result.generatedAdImageDataUri ? (
                   <div className="flex flex-col items-center space-y-4">
@@ -309,7 +309,7 @@ export function AiMarketingToolForm() {
                 </div>
               </TabsContent>
 
-              <TabsContent value="metaCampaign" className="p-4 border rounded-md bg-muted/20 min-h-[300px] space-y-6">
+              <TabsContent value="metaCampaign" className="p-4 mt-[5rem] border rounded-md  bg-muted/20 min-h-[300px] space-y-6">
                 <h3 className="text-xl font-semibold text-foreground mb-3 flex items-center"><Facebook className="mr-2 h-5 w-5 text-blue-600"/>Meta Campaign Content (Facebook/Instagram)</h3>
                 <div className="space-y-4">
                   <div>
@@ -333,7 +333,7 @@ export function AiMarketingToolForm() {
                 </div>
               </TabsContent>
 
-              <TabsContent value="googleCampaign" className="p-4 border rounded-md bg-muted/20 min-h-[300px] space-y-6">
+              <TabsContent value="googleCampaign" className="p-4 mt-[5rem] border rounded-md bg-muted/20 min-h-[300px] space-y-6">
                 <h3 className="text-xl font-semibold text-foreground mb-3 flex items-center"><GoogleIcon /> <span className="ml-2">Google Ads Campaign Content</span></h3>
                 <div className="space-y-4">
                   <div>
@@ -359,12 +359,12 @@ export function AiMarketingToolForm() {
                 </div>
               </TabsContent>
 
-              <TabsContent value="productDesc" className="p-4 border rounded-md bg-muted/20 min-h-[300px] space-y-4">
+              <TabsContent value="productDesc" className="p-4 mt-[5rem] border rounded-md bg-muted/20 min-h-[300px] space-y-4">
                 <h3 className="text-xl font-semibold text-foreground mb-2">Optimized Product Description</h3>
                 <p className="p-3 rounded-md bg-background border text-foreground text-sm whitespace-pre-wrap">{result.optimizedProductDescription}</p>
               </TabsContent>
               
-              <TabsContent value="generalIdeas" className="p-4 border rounded-md bg-muted/20 min-h-[300px] space-y-4">
+              <TabsContent value="generalIdeas" className="p-4 mt-[5rem] border rounded-md bg-muted/20 min-h-[300px] space-y-4">
                 <h3 className="text-xl font-semibold text-foreground mb-2">General Ad Copy Ideas &amp; Angles</h3>
                 <ul className="list-disc list-inside space-y-2">
                   {result.generalAdCopyIdeas.map((idea, index) => (
